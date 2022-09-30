@@ -4,14 +4,30 @@
 #include"mTypes.h"
 #endif
 
+#define arrSize 100
 #include<stdio.h>
 #include<typeinfo>
 #include<iostream>
 
 
-dChar *inputCharArr() {
+dChar* inputCharArr() {
 	dChar str[100];
-	scanf_s("%s[^n]", str);
+	scanf_s("%s[^n]", str, _countof(str));
+	return str;
+}
+
+
+dChar* inputCharArr2() {
+	dChar temp;
+	dChar str[arrSize];
+	dInt i = 0;
+	temp = getchar();
+	while (temp != '\n' && i < arrSize - 1){
+		str[i] = temp;
+		temp = getchar();
+		i++;
+	}
+	str[i] = '\0';
 	return str;
 }
 
@@ -29,6 +45,7 @@ dBool2 getBool2() {
 
 	return res;
 }
+
 void printBool2(dBool2 a) {
 	if (a == True)
 		printf("True\n");
@@ -62,9 +79,8 @@ void printChar(dChar c) {
 int main() {
 	//dBool2 a = getBool2();
 	//printBool2(a);
-	char* s = inputCharArr();
+	char* s = inputCharArr2();
 	printCharArr(s);
-
 	//dChar c = getChar();
 	//printChar(c);
 
